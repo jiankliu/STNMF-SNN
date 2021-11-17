@@ -8,7 +8,7 @@ by Shanshan Jia, Dajun Xing, Zhaofei Yu, Jian~K.~Liu, PLoS Comput Biol (2021).
 
 
 ### Usage:
-run demo.m in Mmatlab.
+run demo.m in Matlab.
 
 ### Output:
 The program generates 4 figures:<br>
