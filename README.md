@@ -26,4 +26,4 @@ One should manually adjust iglist to order the inferred subunits same as modeled
 ### License issues:
 The code in this package is distributed under the GNU General Public License.<br>
 The semi-NMF algorithm is based on modified code from the NMF MATLAB Toolbox by Yifeng Li, Alioune Ngom (https://sites.google.com/site/nmftool/, citation: Y. Li and A. Ngom, The non-negative matrix factorization toolbox for biological data mining, BMC Source Code for Biology and Medicine, vol 8, pp. 10), which is also distributed under the GNU General Public License. See accompanying license file and license notes in the source code files.<br>
-This code is a further extension based on STNMFanalysis.  STNMFanalysis, website: http://www.retina.uni-goettingen.de/.
+This code is a further extension based on STNMFanalysis.  STNMFanalysis, website: https://github.com/jiankliu/STNMFanalysis.
