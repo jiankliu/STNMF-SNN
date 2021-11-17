@@ -15,7 +15,8 @@ One should manually adjust iglist to order the inferred subunits same as modeled
 (6 subunits in layer 1, 2 cells in layer 2, 1 cell in layer 3, as in Fig. 3 ).
 
 ### STNMF SNN Analysis:
-1. In the folder of STNMF_SNN_analysis: run demo.m in Matlab to generate the following Outputs:
+1. In the folder of STNMF_SNN_analysis: run demo.m in Matlab to generate the following outputs:
+
 The program generates 4 figures:<br>
 1. The STA of layer 3, displayed as a 2D color map.<br>
 2. The current best set of modules (of layer 1) and the subunits of model cell, displayed as 2D color maps.<br>
