@@ -2,7 +2,7 @@
 
 This code is to demonstrate dissecting cascade computational components of spiking neural components with spike-triggered non-negative matrix factorization.
 
-Accompanying publication:
+Publication:
 “Dissecting cascade computational components in spiking neural networks”
 by Shanshan Jia, Dajun Xing, Zhaofei Yu, Jian K. Liu, PLoS Comput Biol (2021).
 
