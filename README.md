@@ -4,7 +4,7 @@ This code is to demonstrate dissecting cascade computational components of spiki
 
 Publication:
 “Dissecting cascade computational components in spiking neural networks”
-by Shanshan Jia, Dajun Xing, Zhaofei Yu, Jian K. Liu, PLoS Comput Biol (2021).
+by Shanshan Jia, Dajun Xing, Zhaofei Yu, Jian K. Liu, PLoS Comput Biol 17(11): e1009640 (2021) DOI: 10.1371/journal.pcbi.1009640
 
 
 ### Usage:
