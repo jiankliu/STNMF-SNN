@@ -1,8 +1,8 @@
 % build the subunit spike train
-function GC_subunit_sp=get_subunit_spike_train_snn(Ngood,sp,spklist_sub)
+function subunit_sp=get_subunit_spike_train_snn(Ngood,sp,spklist_sub)
 
 %% get the order of spklist from sp
-GC_subunit_sp=[];
+subunit_sp=[];
 iid=[];
 j=1;
 for i=1:length(sp)
@@ -32,6 +32,6 @@ for L=1:Ngood
 
 end
 
-GC_subunit_sp=sp_sub_all;
+subunit_sp=sp_sub_all;
 disp( 'subunit spike train finished!' );
 end

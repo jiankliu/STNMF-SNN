@@ -1,11 +1,7 @@
-
 % updata by jss
-% 2021.4.25  6 - 2- 1 LIF
+% 2021.4.25  6 - 2- 1 LIF V1 simple
 
-% a model for subRF 
-% 2014.04.23
-
-function ModelSubRF_3layers_LIF_snn(pathname,Weight,Weight2,SEED,V_reset,V_e,V_th)
+function ModelSubRF_3layers_LIF_SNN_V1simple(pathname,Weight,Weight2,V_reset,V_e,V_th)
 
 global RefreshRate; %Stimulus refresh rate (Stim frames per second)
 global pStim;
@@ -82,7 +78,7 @@ spM(6,:) = reshape(spSTA6,1,[]);
 pStim.blackwhite = false;
 pStim.meanintensity = 0.5;
 pStim.contrast = 0.5;
-pStim.seed = SEED;
+pStim.seed = 1000;
 
 %Bineary checkerboard
 CB = ran1(pStim.seed, pStim.Nx*pStim.Ny*pStim.NumImages);
@@ -97,7 +93,7 @@ tmM=zeros(Nsub,20);
 for tem=1:Nsub
     tmM(tem,:)=tmSTA;
 end
-spSTA = [];
+
 for i=1:Nsub
 	temp = reshape(spM(i,:),[],1);
 	temp = repmat(temp,1,pStim.NumImages);
@@ -115,12 +111,12 @@ for i=1:Nsub
     np = 2;   % should be small, like 2, can not be large
     abig = repmat(a'*pWorld.dt,np,1); % make Poisson spike train
     subsp = ceil(sum(rand(size(abig))<abig,1)');
-    sub_SP(i,:) = subsp';
+    sub_SPall(i,:) = subsp';
 end
 
 gclist=[1,4,2,5;2,5,3,6];
 for ig=1:2
-    sub_SPt= sub_SP(gclist(ig,:),:);
+    sub_SPt= sub_SPall(gclist(ig,:),:);
     output = Weight * sub_SPt; 
     frameT=1000/RefreshRate;
     insp=zeros(1,1000/RefreshRate*length(output));
@@ -160,7 +156,6 @@ for ig=1:2
     spike(1:pRF.nt)=0;
     sub_SP2(ig,:)=spike;
 end 
-
     output2 = Weight2 * sub_SP2; 
     insp=zeros(1,1000/RefreshRate*length(output2));
     insp(1000/RefreshRate/2:1000/RefreshRate:end)=output2;
@@ -197,41 +192,12 @@ end
     spike = histc( spkTime,ftimes )';  % 25Hz
     spike(1:pRF.nt)=0;
 
-    spklist = spike(spike>0);
-
-    [sta, ~, SS]= simpleSTC(CB',spike,pRF.nt);
-    sta = sta./norm(sta);
-    sta = reshape(sta,pRF.nt,pStim.Nx, pStim.Nx);
     nt = pRF.nt;
     nx = pStim.Nx;
     ny = pStim.Ny;
+    sub_SP=sub_SPall;
     
-    % singular value decomposition
-    temp=[];
-    [temp,sigma,sp] = svd(reshape(sta,size(sta,1),[]),'econ');
-    sigma = diag(sigma);
-    svdsta = cell(size(sigma));
-    for m=1:length(svdsta)
-        svdsta{m} = reshape(temp(:,m)*sigma(m)*sp(:,m)',size(sta));
-    end
-    tmSVD = temp(:,1);
-    if abs(min(tmSVD))==max(abs(tmSVD))
-        tmSVD=-tmSVD;
-        labelF=-1;
-    else
-        labelF=1;
-    end
-    for n=1:1
-        % spatial SVD component
-        spSVD = reshape(sp(:,n)',size(svdsta{n},2),size(svdsta{n},3));
-        spSVD=labelF*spSVD;
-        % visualize spatial SVD component
-        % data range
-        datarange = [-0.5 0.5];
-        if ~diff(datarange), datarange = mean(datarange)+[-0.1,0.1]; end
-    end
-    
-    save([pathname,'Data.mat'],'CB','pStim','spkTime','spike','SS','sub_SP','sub_SP2','spklist','nt','nx','ny','tmSVD','spSVD','spM','tmM','sta','comp','-v7.3');
+    save([pathname,'V1Data_modelsimple.mat'],'CB','pStim','spike','sub_SP','sub_SP2','nt','nx','ny','spM','tmM','comp','-v7.3');
 end
 
 
