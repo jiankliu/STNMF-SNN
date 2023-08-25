@@ -1,7 +1,7 @@
 % updata by jss
 % 2021.4.25  6 - 2- 1 LIF V1 simple
 
-function ModelSubRF_3layers_LIF_SNN_V1simple(pathname,Weight,Weight2,V_reset,V_e,V_th)
+function ModelSubRF_3layers_LIF_SNN_V1simple(Weight,Weight2,V_reset,V_e,V_th)
 
 global RefreshRate; %Stimulus refresh rate (Stim frames per second)
 global pStim;
@@ -78,7 +78,7 @@ spM(6,:) = reshape(spSTA6,1,[]);
 pStim.blackwhite = false;
 pStim.meanintensity = 0.5;
 pStim.contrast = 0.5;
-pStim.seed = 1000;
+pStim.seed = -1000;
 
 %Bineary checkerboard
 CB = ran1(pStim.seed, pStim.Nx*pStim.Ny*pStim.NumImages);
@@ -90,9 +90,12 @@ CB = CB - 0.5;
 Nsub = size(spM,1); 
 sum_RF = zeros(Nsub,pStim.NumImages);
 tmM=zeros(Nsub,20);
+
 for tem=1:Nsub
     tmM(tem,:)=tmSTA;
 end
+tmM(2,:)=-1*tmM(2,:);
+tmM(5,:)=-1*tmM(5,:);
 
 for i=1:Nsub
 	temp = reshape(spM(i,:),[],1);
@@ -197,7 +200,7 @@ end
     ny = pStim.Ny;
     sub_SP=sub_SPall;
     
-    save([pathname,'V1Data_modelsimple.mat'],'CB','pStim','spike','sub_SP','sub_SP2','nt','nx','ny','spM','tmM','comp','-v7.3');
+    save(['Data.mat'],'CB','pStim','spike','sub_SP','sub_SP2','nt','nx','ny','spM','tmM','comp','-v7.3');
 end
 
 

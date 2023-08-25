@@ -1,4 +1,4 @@
-function STE=GetSTE_fun(ss,spklist,tmSVD,nt,nx,ny)
+function STE=get_STE_snn(ss,spklist,tmSVD,nt,nx,ny)
 % calculate STE
 %this ss is SS
 Nspike=size(ss,1);
@@ -16,5 +16,6 @@ for i=1:Nspike
         
 %    end
 end
-%save('STE.mat','STE');
+Nx=nx;Ny=ny;
+save('STE.mat','STE','Nx','Ny');
 end

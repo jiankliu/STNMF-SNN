@@ -1,7 +1,7 @@
 % updata by jss
 % 2021.4.25  8 - 2- 1 LIF V1 complex
 
-function ModelSubRF_3layers_LIF_SNN_V1complex(pathname,Weight,Weight2,V_reset,V_e,V_th)
+function ModelSubRF_3layers_LIF_SNN_V1complex(Weight,Weight2,V_reset,V_e,V_th)
 
 global RefreshRate; %Stimulus refresh rate (Stim frames per second)
 global pStim;
@@ -209,7 +209,7 @@ end
     ny = pStim.Ny;
     sub_SP=sub_SPall;
     
-    save([pathname,'V1Data_modelcomplex.mat'],'CB','pStim','spike','sub_SP','sub_SP2','nt','nx','ny','spM','tmM','comp','-v7.3');
+    save(['Data.mat'],'CB','pStim','spike','sub_SP','sub_SP2','nt','nx','ny','spM','tmM','comp','-v7.3');
 end
 
 

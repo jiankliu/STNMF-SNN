@@ -79,6 +79,7 @@ hCurrentSolutionFig = figure('Position', [500, 550, 1000, 400]); % for showing c
 
 % Plot STA
 % datarange = [-0.5, 0.5];
+
 STA = reshape( mean( STE ), [Nx,Ny] );
 
 % Initial parameters for semi-NMF
@@ -229,7 +230,7 @@ for q=1:Npert % The main loop, each time with a different perturbation of the mo
 end;
 % Save final modules and Moran's I values if so specified
 if( saveFinalResult )
-    save(outName,'unit','moransI','Ngood','Weight');
+    save(outName,'unit','moransI','Ngood','Weight','K');
 end;
 
 disp( 'STNMF analysis finished!' );

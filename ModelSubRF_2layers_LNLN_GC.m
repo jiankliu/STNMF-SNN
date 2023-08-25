@@ -1,6 +1,6 @@
 % a model for subRF 
 
-function ModelSubRF_2layers_LNLN_GC(pathname,Weight)
+function ModelSubRF_2layers_LNLN_GC(Weight)
 
     global RefreshRate; %Stimulus refresh rate (Stim frames per second)
     global pStim;
@@ -114,6 +114,7 @@ function ModelSubRF_2layers_LNLN_GC(pathname,Weight)
     end
 
     %get data
+    sub_SP=sum_RF;
     output = Weight * sum_RF; 
     pModel.a = 2;  %scale fac tor
     pModel.b = 10;         %exponent
@@ -133,8 +134,10 @@ function ModelSubRF_2layers_LNLN_GC(pathname,Weight)
     nx = pStim.Nx;
     ny = pStim.Ny;
     
-    save([pathname,'GCData_model.mat'],'CB','pStim','spike','nt','nx','ny','spM','tmM','comp','-v7.3');
+    save(['Data.mat'],'CB','pStim','spike','sub_SP','nt','nx','ny','spM','tmM','comp','-v7.3');
+
 end
+
 
 
 function [x] = NL1(x)
